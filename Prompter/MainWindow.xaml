@@ -1,0 +1,139 @@
+﻿<Window x:Class="Prompter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prompter"
+        mc:Ignorable="d"
+        xmlns:pt="clr-namespace:WpfPageTransitions;assembly=WpfPageTransitions"
+        Title="Video Text Box" Height="450" Width="800" WindowStartupLocation="CenterScreen" Topmost="True" WindowStyle="None" Loaded="Window_Loaded">
+
+   
+    
+    <Grid>
+        <Grid x:Name="MyGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="15" />
+            </Grid.RowDefinitions>
+
+            <pt:PageTransition Name="ptControl" TransitionType="Flip" Grid.Row="0">
+                
+            </pt:PageTransition>
+
+            <!--<RichTextBox Tag="0" Grid.Row="0" x:Name="rtbSend" BorderBrush="White" BorderThickness="0" SpellCheck.IsEnabled="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsDocumentEnabled="True" FontFamily="{DynamicResource {x:Static SystemFonts.MessageFontFamilyKey}}" Block.TextAlignment="Center">
+                <RichTextBox.Resources>
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0" />
+                    </Style>
+                </RichTextBox.Resources>
+                <RichTextBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="VTB Remote" Click="Window_Loaded"/>
+                        <Separator/>
+                        <MenuItem Header="Font Studio" Click="MenuItem_Click_1"/>
+                        <Separator/>
+                        <MenuItem Command="EditingCommands.ToggleBold"/>
+                        <MenuItem Command="EditingCommands.ToggleItalic"/>
+                        <MenuItem Command="EditingCommands.ToggleBullets"/>
+                        <MenuItem Command="EditingCommands.ToggleNumbering"/>
+                        <MenuItem Command="EditingCommands.AlignLeft"/>
+                        <MenuItem Command="EditingCommands.AlignCenter"/>
+                        <MenuItem Command="EditingCommands.AlignRight"/>
+                        <MenuItem Command="EditingCommands.AlignJustify"/>
+                        <Separator />
+                        <MenuItem Command="ApplicationCommands.Undo"/>
+                        <MenuItem Command="ApplicationCommands.Cut"/>
+                        <MenuItem Command="ApplicationCommands.Copy"/>
+                        <MenuItem Command="ApplicationCommands.Paste"/>
+                        <Separator />
+                        <MenuItem Header="New" Click="MenuItem_Click_4"/>
+                        <MenuItem Header="Open" Click="MenuItem_Click_3"/>
+                        <MenuItem Header="Save" Click="MenuItem_Click_2"/>
+                        <Separator/>
+                        <MenuItem Header="Close" Click="MenuItem_Click"/>
+
+                    </ContextMenu>
+                </RichTextBox.ContextMenu>
+            </RichTextBox>-->
+
+            <Rectangle Grid.Row="2" Fill="#FFF4F4F5" Cursor="SizeAll" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"/>
+
+
+            <DockPanel x:Name="dpMenu" Grid.Row="1" LastChildFill="False" Background="LightBlue" Opacity="0.6">
+                <Button Width="32" Height="32" DockPanel.Dock="Left" ToolTip="New" Cursor="Hand" Click="NewFile" Margin="2,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/new.png"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <Image Source="images/new.png" />
+                    </Button.Content>
+                </Button>
+                
+                <Button Width="32" Height="32" DockPanel.Dock="Left" ToolTip="Open File" Cursor="Hand" Click="OpenFile" Margin="2,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/open-file.png"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <Image Source="images/open-file.png" />
+                    </Button.Content>
+                </Button>
+
+                <Button Width="32" Height="32" DockPanel.Dock="Left" ToolTip="Save File" Margin="2,0" Cursor="Hand" Click="SaveFile" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/save.png"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <Image Source="images/save.png" />
+                    </Button.Content>
+                </Button>
+
+                <Button Width="32" Height="32" DockPanel.Dock="Left" ToolTip="Close Program" Margin="2,0" Cursor="Hand" Click="Button_Click_3"  >
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/close.png"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <Image Source="images/close.png" />
+                    </Button.Content>
+                </Button>
+
+               
+                <Button Width="32" Height="32" DockPanel.Dock="Right" ToolTip="Remote" Cursor="Hand" Click="Button_Click_4" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/remote.png"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <Image Source="images/remote.png" />
+                    </Button.Content>
+                </Button>
+                <Button Width="32" Height="32" Click="Button_Click" DockPanel.Dock="Right" ToolTip="Next Slide" Cursor="Hand" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/Arrow-Right-icon.png"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <Image Source="images/Arrow-Right-icon.png" />
+                    </Button.Content>
+                </Button>
+                <Button Width="32" Height="32" Click="Button_Click_1" DockPanel.Dock="Right" ToolTip="Previous Slide" Cursor="Hand">
+                    <Button.Content>
+                        <Image Source="images/Arrow-Left-icon.png" />
+                    </Button.Content>
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/Arrow-Left-icon.png"/>
+                    </Button.Background>
+                </Button>
+                <Label x:Name="PageNum" Height="32" DockPanel.Dock="Right" Content="Slide# 1" FontWeight="Bold"></Label>
+                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                    <!--<Label Content="Transitions:" Margin="0,3,0,3"/>-->
+                    <ComboBox x:Name="cmbTrans" Width="110" SelectionChanged="cmbTrans_SelectionChanged" Margin="0,3,0,3" ToolTip="Transition Effect"/>
+                    <!--<Label Content="Delay(ms):" Margin="5,3,0,3"/>-->
+                    <ComboBox x:Name="cmdDelay" Width="60" SelectionChanged="cmdDelay_SelectionChanged" Margin="5,3,0,3" ToolTip="Slide Change Delay (ms)"/>
+                </StackPanel>
+                
+                
+            </DockPanel>
+        </Grid>
+
+    </Grid>
+</Window>
